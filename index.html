@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // This section will allow the user to input the choice
+        let userChoice = prompt("Please select rock, paper, or scissors.").toLowerCase();
+        console.log("You chose " + userChoice);
+
+        //This section is the computers randomized choice
+        const myArray = ["rock", "paper", "scissors"];
+        let rand = myArray[(Math.random()*myArray.length) | 0] 
+        let getComputerChoice = rand;
+        console.log("The computer chose " + getComputerChoice);
+
+        //This section determines the winner of the game
+        function playRound(userChoice, getComputerChoice) {
+            if ((userChoice == "rock" && getComputerChoice == "scissors") ||
+                (userChoice == "paper" && getComputerChoice == "rock") ||
+                (userChoice == "scissors" && getComputerChoice == "paper")) {
+                    return("You win!");
+                }
+            else if (userChoice == getComputerChoice) {
+                return("You tied!");
+            }
+            else {
+                return("Computer wins!");
+            }
+        }
+
+        //This section plays a round of the game
+        console.log(playRound(userChoice, getComputerChoice));
+    </script>
+    
+</body>
+</html>
