@@ -9,33 +9,62 @@
 <body>
 
     <script>
-        // This section will allow the user to input the choice
-        let userChoice = prompt("Please select rock, paper, or scissors.").toLowerCase();
-        console.log("You chose " + userChoice);
 
-        //This section is the computers randomized choice
-        const myArray = ["rock", "paper", "scissors"];
-        let rand = myArray[(Math.random()*myArray.length) | 0] 
-        let getComputerChoice = rand;
-        console.log("The computer chose " + getComputerChoice);
+        function game(){
+            let userScore = 0;
+            let computerScore = 0;
+                
+                // Plays five rounds, unless is determined before
+                for (let i = 0; i < 5 || (userScore || computerScore == 3); i++) {
 
-        //This section determines the winner of the game
-        function playRound(userChoice, getComputerChoice) {
-            if ((userChoice == "rock" && getComputerChoice == "scissors") ||
-                (userChoice == "paper" && getComputerChoice == "rock") ||
-                (userChoice == "scissors" && getComputerChoice == "paper")) {
-                    return("You win!");
+                //Provides a prompt for the user to select their choice
+                let userChoice = prompt("Please select rock, paper, or scissors.").toLowerCase();
+
+                //Randomly chooses the computer choice
+                const myArray = ["rock", "paper", "scissors"];
+                let rand = myArray[(Math.random()*myArray.length) | 0] 
+                let getComputerChoice = rand;
+
+                //Plays a round and outputs the outcome of the round
+                console.log(playRound(userChoice, getComputerChoice));
+                console.log("You have won " + userScore + " matches and the computer has won " + computerScore + " matches.");
+            }
+        
+                //Determines the winner of the best of five
+                if (userScore > computerScore) {
+                    console.log("Congrats! You win by a score of " + userScore + " to " + computerScore + ".");
+                } else if (userScore == computerScore) {
+                    console.log("You tied this best of five " + userScore + " to " + computerScore + ".");
+                } else {
+                    console.log ("Sorry! The computer wins by a score of " + computerScore + " to " + userScore + ".");
                 }
-            else if (userChoice == getComputerChoice) {
-                return("You tied!");
             }
-            else {
-                return("Computer wins!");
-            }
-        }
 
-        //This section plays a round of the game
-        console.log(playRound(userChoice, getComputerChoice));
+                //This section determines the winner of the game
+                function playRound(userChoice, getComputerChoice) {
+                        
+
+                        console.log("You chose " + userChoice + ".");
+                        console.log("The computer chose " + getComputerChoice + ".");
+
+                       if ((userChoice == "rock" && getComputerChoice == "scissors") ||
+                           (userChoice == "paper" && getComputerChoice == "rock") ||
+                            (userChoice == "scissors" && getComputerChoice == "paper")) {
+                                return("You win this round!");
+                                userScore++
+                           }
+                       else if (userChoice == getComputerChoice) {
+                            return("You tied this round!");
+                        }
+                        else {
+                           return("Computer wins this round!");
+                           computerScore++
+                        }
+                    }
+        
+
+        //This section plays a best of 5 game
+        game();
     </script>
     
 </body>
